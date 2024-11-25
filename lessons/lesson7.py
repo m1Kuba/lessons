@@ -23,7 +23,7 @@ def add_user(fio, age, hobby):
     print(f"Пользователь {fio} добавлен")
 
 
-# add_user("Олег", 25, "плавание")
+# add_user("Вася Пупкин", 33, "плавание")
 
 
 def get_all_users():
@@ -39,7 +39,7 @@ def get_all_users():
         print("Список пользователей пуст.")
 
 
-get_all_users()
+# get_all_users()
 
 
 def update_user(fio=None, age=None, hobby=None, rowid=None ):
@@ -60,5 +60,16 @@ def update_user(fio=None, age=None, hobby=None, rowid=None ):
         connect.commit()
 
 
-update_user(fio="Олег", hobby="Игры", rowid=3)
-get_all_users()
+# update_user(fio="Олег", hobby="Игры", rowid=3)
+# get_all_users()
+
+def delete_user(fio):
+    cursor.execute(
+        'DELETE FROM users WHERE fio = ?',
+        (fio,))
+    connect.commit()
+    print("Пользователь удален")
+
+delete_user(fio="Арзыбек")
+
+connect.close()
